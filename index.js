@@ -19,5 +19,7 @@ app.use('/dresses', dressesRoute);
 //</editor-fold>
 
 app.listen(PORT, function () {
-  console.log('=== lilyfabric-api server is listening on port %s ===.', PORT);
+  console.log('+-------------------------------------------------+');
+  console.log('| lilyfabric-api server is listening on port %s |', PORT);
+  console.log('+-------------------------------------------------+');
 });

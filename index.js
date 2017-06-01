@@ -6,7 +6,8 @@ var express = require('express'),
   morgan = require('morgan'),
   fileStream = require('fs'),
   path = require('path'),
-  fileStreamRorator = require('file-stream-rotator');
+  fileStreamRorator = require('file-stream-rotator'),
+  compression = require('compression');
 //</editor-fold>
 
 //<editor-fold desc="Configurations">
@@ -24,12 +25,14 @@ var PORT = process.env.PORT || 2828,
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(morgan('common'));  // Log to console
 
+app.use(morgan('common'));  // Log to console
 fileStream.existsSync(logDirectory) || fileStream.mkdirSync(logDirectory);
 app.use(morgan('common', {  // Log to file
   stream: logToFileStream
 }));
+
+app.use(compression());
 //</editor-fold>
 
 //<editor-fold desc="Routes">

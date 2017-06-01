@@ -3,16 +3,33 @@
 //<editor-fold desc="node_modules">
 var express = require('express'),
   bodyParser = require('body-parser'),
-  morgan = require('morgan');
+  morgan = require('morgan'),
+  fileStream = require('fs'),
+  path = require('path'),
+  fileStreamRorator = require('file-stream-rotator');
 //</editor-fold>
 
 //<editor-fold desc="Configurations">
 var PORT = process.env.PORT || 2828,
-  app = express();
+  app = express(),
+  logDirectory = path.join(__dirname, 'log'),
+  logToFileStream = fileStreamRorator
+    .getStream({
+      filename: path.join(logDirectory, 'lilyfabric-%DATE%.log'),
+      frequency: 'weekly',
+      verbose: false,
+      date_format: 'YYYYMMDD'
+    });
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(morgan('common')); // https://github.com/expressjs/morgan#common
+app.use(morgan('common'));  // Log to console
+
+fileStream.existsSync(logDirectory) || fileStream.mkdirSync(logDirectory);
+app.use(morgan('common', {  // Log to file
+  stream: logToFileStream
+}));
 //</editor-fold>
 
 //<editor-fold desc="Routes">

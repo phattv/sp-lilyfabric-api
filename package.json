@@ -8,6 +8,7 @@
     "bookshelf": "^0.10.3",
     "express": "^4.15.3",
     "knex": "^0.13.0",
+    "morgan": "^1.8.2",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {},

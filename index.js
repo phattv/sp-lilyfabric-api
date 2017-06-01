@@ -3,14 +3,16 @@
 //<editor-fold desc="node_modules">
 var express = require('express'),
   bodyParser = require('body-parser'),
-  app = express();
+  morgan = require('morgan');
 //</editor-fold>
 
 //<editor-fold desc="Configurations">
-var PORT = process.env.PORT || 2828;
+var PORT = process.env.PORT || 2828,
+  app = express();
 app.use(bodyParser.urlencoded({
-  extend: true
+  extended: true
 }));
+app.use(morgan('common')); // https://github.com/expressjs/morgan#common
 //</editor-fold>
 
 //<editor-fold desc="Routes">

@@ -1,0 +1,27 @@
+{
+  "name": "lilyfabric-api",
+  "version": "1.0.0",
+  "description": "api portal for lilyfabric.com",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bookshelf": "^0.10.3",
+    "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phattv/sp-lilyfabric-api.git"
+  },
+  "author": "phattv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phattv/sp-lilyfabric-api/issues"
+  },
+  "homepage": "https://github.com/phattv/sp-lilyfabric-api#readme"
+}

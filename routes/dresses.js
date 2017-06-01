@@ -13,7 +13,7 @@ router
   .route('/')
   .get(function (request, response) {
     Dress
-      .getAll()
+      .fetchAll()
       .then(function (dresses) {
         response.json(dresses);
       })

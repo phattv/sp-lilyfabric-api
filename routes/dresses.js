@@ -13,6 +13,7 @@ router
   .route('/')
   .get(function (request, response) {
     Dress
+      .where(request.query)
       .fetchAll()
       .then(function (dresses) {
         response.json(dresses);

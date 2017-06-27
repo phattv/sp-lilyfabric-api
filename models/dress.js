@@ -2,16 +2,41 @@
 module.exports = (sequelize, DataTypes) => {
   const Dress = sequelize.define('Dress', {
     id: {
-      type: DataTypes.INTEGER,
+      allowNull: false,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
+      type: DataTypes.INTEGER
     },
-    code: DataTypes.STRING,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    features: DataTypes.STRING,
-    price: DataTypes.FLOAT,
-    category: DataTypes.STRING
+    code: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    description: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    features: {
+      type: DataTypes.STRING
+    },
+    price: {
+      allowNull: false,
+      type: DataTypes.FLOAT
+    },
+    category: {
+      type: DataTypes.STRING
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    }
   }, {
     classMethods: {
       associate: (models) => {

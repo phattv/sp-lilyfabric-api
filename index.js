@@ -1,7 +1,7 @@
 'use strict';
 
 //<editor-fold desc="node_modules">
-var express = require('express'),
+const express = require('express'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   fileStream = require('fs'),
@@ -10,8 +10,9 @@ var express = require('express'),
   compression = require('compression');
 //</editor-fold>
 
+
 //<editor-fold desc="Configurations">
-var PORT = process.env.PORT || 2828,
+const PORT = process.env.PORT || 7603,
   app = express(),
   logDirectory = path.join(__dirname, 'log'),
   logToFileStream = fileStreamRorator
@@ -22,21 +23,26 @@ var PORT = process.env.PORT || 2828,
       date_format: 'YYYYMMDD'
     });
 
+// Parse requests
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// Logging
 app.use(morgan('common'));  // Log to console
 fileStream.existsSync(logDirectory) || fileStream.mkdirSync(logDirectory);
 app.use(morgan('common', {  // Log to file
   stream: logToFileStream
 }));
 
+// Gzip responses
 app.use(compression());
 //</editor-fold>
 
-//<editor-fold desc="Routes">
-var dressesRoute = require('./routes/dresses');
+
+//<editor-fold desc="Routing">
+const dressesRoute = require('./routes/dresses');
 app.use('/dresses', dressesRoute);
 //</editor-fold>
 

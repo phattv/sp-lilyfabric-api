@@ -1,6 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Dress = sequelize.define('Dress', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     code: DataTypes.STRING,
     name: DataTypes.STRING,
     description: DataTypes.STRING,

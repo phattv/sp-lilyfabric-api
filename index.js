@@ -42,8 +42,10 @@ app.use(compression());
 
 
 //<editor-fold desc="Routing">
-const dressesRoute = require('./routes/dresses');
-app.use('/dresses', dressesRoute);
+require('./routes')(app);
+app.get('*', (request, response) => response.status(200).send({
+  message: 'Welcome to lilyfabric-api.',
+}));
 //</editor-fold>
 
 app.listen(PORT, function () {
@@ -51,3 +53,5 @@ app.listen(PORT, function () {
   console.log('| lilyfabric-api server is listening on port %s |', PORT);
   console.log('+-------------------------------------------------+');
 });
+
+module.exports = app;
